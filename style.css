@@ -1,0 +1,102 @@
+body {
+	margin: 0;
+	background-color: #CCC;
+	font-size: 150%;
+}
+
+.flex-row {
+	display: flex;
+	flex-flow: row nowrap;
+}
+
+.flex-space-between {
+	justify-content: space-between;
+}
+
+#slide-view	{
+	width: 800px;
+	height: 500px;
+	z-index: -1;
+
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	transform-origin: center center;
+}
+
+.slide {
+	font-family: "Segoe UI", "Helvetica", sans-serif;
+	font-size: initial;
+	height: inherit;
+	display: none;
+}
+
+div[id^="slide"]:first-child {
+	display: inherit;
+}
+
+.normal-slide {
+	background-color: white;
+}
+
+.normal-slide header {
+	margin: 0;
+	background-color: #7C230D;
+}
+
+.normal-slide h1 {
+	font-family: "Segoe WP Semibold", "Helvetica", sans-serif;
+	margin: 0;
+	padding-left: 0.3em;
+	color: white;
+	font-size: 32px;
+}
+
+.normal-slide main {
+	font-size: 24px;
+	padding-left: 0.5em;
+}
+
+.normal-slide main ul {
+	margin: 0;
+	list-style-position: inside;
+	padding-left: 1.2em;
+}
+
+.normal-slide main > ul {
+	padding-left: 0;
+}
+
+.normal-slide pre, .normal-slide code {
+	font-family: "Consolas", monospace;
+	font-weight: bold;
+}
+
+.normal-slide .keyword {
+	color: red;
+}
+
+.normal-slide .string {
+	color: #FF7F00;
+}
+
+.normal-slide pre {
+	font-size: 28px;
+	margin: 0;
+}
+
+.normal-slide footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	/*background-color: #7C230D;*/
+}
+
+.normal-slide .footer-info {
+	margin: 0 1em 0.3em;
+	color: #888;
+	font-weight: lighter;
+	font-size: 90%;
+}

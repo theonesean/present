@@ -1,9 +1,68 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-	<title>Test</title>
+	<meta charset="utf-8">
+	<title>Present🎁</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="jquery.js"></script>
+	<script src="html2canvas.min.js"></script>
+	<script src="fullscreen.js"></script>
+	<script src="script.js"></script>
 </head>
-<body>
+<body lang="en">
+	<input type="range" id="scale" min="10" max="200" value="100">
+	<output id="scale-out"></output>
+	<button type="button" id="reset-scale">reset</button>
+	<button type="button" id="full-screen">Fullscreen</button>
+	<button type="button" id="anim-prev">&lt;</button>
+	<button type="button" id="anim-next">&gt;</button>
+	<br>
 
+	<div id="full">
+	<div id="slide-view">
+		<div id="slide1" class="slide normal-slide">
+			<header>
+				<h1>This is the slide header.</h1>
+			</header>
+			<main>
+				<ul>
+					<li data-anim-step="5">point one
+					<li data-anim-step="6">point two
+					<ul>
+						<li data-anim-step="7">fuk
+						<ul>
+							<li data-anim-step="8">shit
+						</ul>
+					</ul>
+					<li data-anim-step="9">point <code>three</code>
+				</ul>
+				<pre data-anim-step="100"><span class="keyword">This</span> should be <span class="string">code</span></pre>
+			</main>
+			<footer>
+				<div class="flex-row flex-space-between">
+					<div class="footer-info">11/7/17</div>
+					<div class="footer-info">CS 0134 term 2181</div>
+					<div class="footer-info">1</div>
+				</div>
+			</footer>
+		</div>
+
+		<div id="slide2" class="slide normal-slide">
+			<header>
+				<h1>Another slide??!?</h1>
+			</header>
+			<main>
+				woah
+			</main>
+			<footer>
+				<div class="flex-row flex-space-between">
+					<div class="footer-info">11/7/17</div>
+					<div class="footer-info">CS 0134 term 2181</div>
+					<div class="footer-info">2</div>
+				</div>
+			</footer>
+		</div>
+	</div>
+	</div>
 </body>
 </html>
