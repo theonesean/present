@@ -1,5 +1,28 @@
 "use strict";
 
+let anim_items = undefined;
+let anim_step = 0;
+const DEFAULT_WIDTH = 800.0;
+const KEY_LEFT = 37;
+const KEY_UP = 38;
+const KEY_RIGHT = 39;
+const KEY_DOWN = 40;
+
+$(document).ready(function()
+{
+	$("#scale").on('input', scale_input);
+	$("#scale").trigger('input');
+
+	$("#reset-scale").click(reset_scale);
+
+	$(document).on(_fullscreenchange(), fullscreen_change);
+	$("#full-screen").click(go_fullscreen);
+
+	anim_items = get_anim_items();
+	$("#anim-next").click(anim_next);
+	$("#anim-prev").click(anim_prev);
+});
+
 function find_animatable()
 {
 	const step_map = {}
@@ -41,9 +64,6 @@ function get_anim_items()
 	return ret;
 }
 
-let anim_items = undefined;
-let anim_step = 0;
-
 function anim_set_visibility(step, state)
 {
 	for(const $v of anim_items[step])
@@ -75,17 +95,44 @@ function reset_scale()
 	$("#scale").trigger('input');
 }
 
-const DEFAULT_WIDTH = 800.0;
+function key_handler(ev)
+{
+	switch(ev.keyCode)
+	{
+		case KEY_LEFT:
+		case KEY_UP:
+			anim_prev();
+			break;
+
+		case KEY_RIGHT:
+		case KEY_DOWN:
+			anim_next();
+			break;
+
+		default:
+			break;
+	}
+}
+
+function fullscreen_start()
+{
+	const scale = screen.width / DEFAULT_WIDTH;
+	$("#slide-view").css("transform", "translate(-50%, -50%) scale(" + scale + ")");
+	$('html').keydown(key_handler);
+}
+
+function fullscreen_end()
+{
+	$("#scale").trigger('input');
+	$('html').off('keydown');
+}
 
 function fullscreen_change()
 {
 	if(_fullscreenEnabled())
-	{
-		const scale = screen.width / DEFAULT_WIDTH;
-		$("#slide-view").css("transform", "translate(-50%, -50%) scale(" + scale + ")");
-	}
+		fullscreen_start();
 	else
-		$("#scale").trigger('input');
+		fullscreen_end();
 }
 
 function go_fullscreen()
@@ -104,16 +151,3 @@ function go_fullscreen()
 // 		}
 // 	});
 // });
-
-$(document).ready(function()
-{
-	$("#scale").on('input', scale_input);
-	$("#scale").trigger('input');
-	$("#reset-scale").click(reset_scale);
-	$(document).on(_fullscreenchange(), fullscreen_change);
-	$("#full-screen").click(go_fullscreen);
-
-	anim_items = get_anim_items();
-	$("#anim-next").click(anim_next);
-	$("#anim-prev").click(anim_prev);
-});
