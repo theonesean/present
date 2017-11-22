@@ -11,6 +11,20 @@ const KEY_DOWN = 40;
 $(document).ready(function()
 {
 	$("#scale").on('input', scale_input);
+	$('html').on('wheel', function(ev)
+	{
+		ev.preventDefault();
+	});
+	$('#slide-view').on('wheel', function(ev)
+	{
+		if(ev.ctrlKey && !ev.altKey && !ev.shiftKey)
+		{
+			var current = parseFloat($("#scale").val());
+			$("#scale").val(current + ev.originalEvent.deltaY);
+			$("#scale").trigger('input');
+			ev.preventDefault();
+		}
+	});
 	$("#scale").trigger('input');
 
 	$("#reset-scale").click(reset_scale);
@@ -95,7 +109,7 @@ function reset_scale()
 	$("#scale").trigger('input');
 }
 
-function key_handler(ev)
+function presentation_key_handler(ev)
 {
 	switch(ev.keyCode)
 	{
@@ -118,7 +132,7 @@ function fullscreen_start()
 {
 	const scale = screen.width / DEFAULT_WIDTH;
 	$("#slide-view").css("transform", "translate(-50%, -50%) scale(" + scale + ")");
-	$('html').keydown(key_handler);
+	$('html').keydown(presentation_key_handler);
 }
 
 function fullscreen_end()
